@@ -1,0 +1,10 @@
+功能：该程序主要用户通过配置文件模板mysql_to_hdfs_template.json 生成mysql同步到hdfs目录json配置文件
+
+注意事项：使用前请修改需要读取mysql数据库配置.
+mysql_to_hdfs_template.json 存储有mysql数据库连接串 ,使用前需要修改读取mysql数据库ip地址用户名及密码等相关配置。
+      
+调用方法：
+ 
+	  python generate_datax_job.sh --db  数据名  --table 表名
+	  
+	  

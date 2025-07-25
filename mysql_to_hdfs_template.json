@@ -1,0 +1,45 @@
+{
+    "job": {
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "username",
+                        "password": "password",
+                        "connection": [
+                            {
+                                "table": ["${table_name}"],
+                                "jdbcUrl": ["jdbc:mysql://localhost:3306/${db_name}?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8"],
+                                "driver": "com.mysql.cj.jdbc.Driver"
+                            }
+                        ],
+                        "column": ["*"],
+                        "splitPk": "",
+                        "where": ""
+                    }
+                },
+                "writer": {
+                    "name": "hdfswriter",
+                    "parameter": {
+                        "defaultFS": "hdfs://lakehouse01:8020",
+                        "fileType": "text",
+                        "path": "/${db_name}",
+                        "fileName": "${table_name}",
+                        "column": [
+                            {"name": "*", "type": "string"}
+                        ],
+                        "writeMode": "append",
+                        "fieldDelimiter": "\t",
+                        "compress": "gzip"
+                    }
+                }
+            }
+        ],
+        "setting": {
+            "speed": {
+                "channel": 3
+            }
+        }
+    }
+}
